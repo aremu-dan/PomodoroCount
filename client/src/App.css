@@ -1,0 +1,134 @@
+:root {
+  --main-color: #1B2135;
+  --accent-color: #262A34;
+  --text-color: #ddd;
+}
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  user-select: none;
+}
+
+.App {
+  height: 100dvh;
+  width: 100dvw;
+  background-color: var(--main-color);
+  color: var(--text-color);
+}
+
+.App_timer {
+  margin: auto;
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  /* background-color: red; */
+}
+
+.App_timer-minute,
+.App_timer-sec,
+.App_timer-divide {
+  width: clamp(35vw, 100%, 40vmax);
+  width: clamp(40vw, 100%, 40vmax);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.App_timer-divide {
+  height: 70vmin;
+  aspect-ratio: unset;
+  width: clamp(50px, 10vw, 60px);
+  border-radius: 0;
+  padding: 0 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.App_timer-minute::before,
+.App_timer-sec::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: var(--accent-color);
+}
+.App_timer-sec > div,
+.App_timer-minute > div,
+.App_timer-divide > div {
+  display: block;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  height: 60vmin;
+  height: 100%;
+  height: fit-content;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50vmin;
+  font-size: 400px;
+  font-size: calc(180px + (260 - 180) * (100vw - 400px) / (800 - 400) );
+}
+.App_timer-divide > div {
+  height: clamp(110px, 15vmax, 150px);
+  width: 80%;
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50vmin;
+  font-size: 150px;
+  gap: 10px;
+}
+.App_timer-sec > div::after,
+.App_timer-minute > div::after {
+  content: ' ';
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  background-color: var(--main-color);
+}
+.App_timer-divide > div::after,
+.App_timer-divide > div::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--text-color);
+}
+.App_timer-divide > div::before {
+  bottom: 0;
+}
+
+
+@media (max-width: 600px) {
+  .App {
+    display: flex;
+    align-items: center;
+  }
+  .App_timer {
+    height: fit-content;
+    /* width: calc(80vw); */
+    display: block;
+  }
+  .App_timer-minute,
+  .App_timer-sec {
+    width: min(45dvh, 80vdw);
+    margin: auto;
+  }
+  .App_timer-sec {
+    margin-top: clamp(20px, 15vmin, 5vmax);
+  }
+  .App_timer-divide {
+    display: none;
+  }
+}
